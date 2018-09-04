@@ -1,9 +1,7 @@
 from timer import *
-
 from influxdb import InfluxDBClient
 client = InfluxDBClient('localhost', 8086, 'root', 'root', 'database01')
 client.create_database('database01')
-
 with Timer() as t:
     with open('input.ssv', 'r') as infile:
         lines = infile.read().splitlines()
@@ -21,4 +19,4 @@ with Timer() as t:
                     }
                 }
             ]
-            #client.write_points(json_body)
+            client.write_points(json_body)
